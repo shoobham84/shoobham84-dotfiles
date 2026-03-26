@@ -1,0 +1,9 @@
+[user]
+	name = shoobham84
+	email = shubhamnayak392reborn@gmail.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[core]
+	editor = code --wait

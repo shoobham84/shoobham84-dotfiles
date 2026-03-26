@@ -1,0 +1,26 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large/Temporary files
+*.log
+*.tmp
+*.swp
+*~
+.netrwhist
+undo/
+tags
+
+# Local history/cache
+.zsh_history
+.zcompdump*
+.python_history
+.node_repl_history
+
+# Neovim lockfile
+nvim/lazy-lock.json
