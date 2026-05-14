@@ -1,6 +1,3 @@
-autoload -U compinit
-compinit
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -94,8 +91,10 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
+  export VISUAL='nvim'
 else
   export EDITOR='nvim'
+  export VISUAL='nvim'
 fi
 
 # Compilation flags
@@ -118,7 +117,7 @@ fi
 
 alias win="cd /mnt/c/Users/shubh"
 alias rncp="g++ -o cses cses.cpp && ./cses"
-alias perf='/usr/lib/linux-tools/6.8.0-107-generic/perf'
+alias cava="cava.exe"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -127,3 +126,17 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init zsh)"
 [[ "${+functions[compdef]}" -ne 0 ]] && compdef __zoxide_z_complete zi
+alias clr="clear"
+
+# bun completions
+[ -s "/home/shubh/.bun/_bun" ] && source "/home/shubh/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Enable caching for completion
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zcompcache"
+eval "$(fzf --zsh)"
+export FZF_CTRL_R_OPTS="--tmux center,80%"
