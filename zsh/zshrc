@@ -140,3 +140,14 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zcompcache"
 eval "$(fzf --zsh)"
 export FZF_CTRL_R_OPTS="--tmux center,80%"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/shubh/.local/bin:$PATH"
+
+if [ -n "$ZSH_VERSION" ]; then
+  eval "$(dbus-launch --sh-syntax)"
+  eval "$(echo "" | gnome-keyring-daemon --unlock)"
+  eval "$(gnome-keyring-daemon --start 2>/dev/null)"
+  export SSH_AUTH_SOCK
+fi
