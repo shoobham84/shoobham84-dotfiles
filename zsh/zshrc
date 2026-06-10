@@ -115,37 +115,35 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-alias win="cd /mnt/c/Users/shubh"
-alias rncp="g++ -o cses cses.cpp && ./cses"
-alias cava="cava.exe"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias vim="nvim"
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# ── PATH ─────────────────────────────────────────
 export PATH="$HOME/.local/bin:$PATH"
+
+# ── Aliases ──────────────────────────────────────
+source ~/dotfiles/zsh/aliases.zsh
+
+# ── Plugins & Tools ──────────────────────────────
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(zoxide init zsh)"
 [[ "${+functions[compdef]}" -ne 0 ]] && compdef __zoxide_z_complete zi
-alias clr="clear"
 
-# bun completions
-[ -s "/home/shubh/.bun/_bun" ] && source "/home/shubh/.bun/_bun"
+# ── NVM ──────────────────────────────────────────
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# bun
+# ── Bun ──────────────────────────────────────────
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Enable caching for completion
+# ── FZF ──────────────────────────────────────────
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zcompcache"
 eval "$(fzf --zsh)"
 export FZF_CTRL_R_OPTS="--tmux center,80%"
 
-
-# Added by Antigravity CLI installer
-export PATH="/home/shubh/.local/bin:$PATH"
-
-if [ -n "$ZSH_VERSION" ]; then
+# ── WSL-specific ─────────────────────────────────
+if grep -qi microsoft /proc/version 2>/dev/null; then
   eval "$(dbus-launch --sh-syntax)"
   eval "$(echo "" | gnome-keyring-daemon --unlock)"
   eval "$(gnome-keyring-daemon --start 2>/dev/null)"

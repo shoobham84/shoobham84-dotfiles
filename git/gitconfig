@@ -7,3 +7,13 @@
 	rebase = false
 [core]
 	editor = nvim
+	excludesfile = ~/dotfiles/gitignore
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	lg = log --oneline --graph --decorate --all
+	cm = commit -m
+	aa = add --all
+	df = diff
+	last = log -1 HEAD
