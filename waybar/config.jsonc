@@ -1,0 +1,213 @@
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  Waybar Config — Gruvbox Dark · Floating Pills · mangowm       ║
+// ╚══════════════════════════════════════════════════════════════════╝
+//
+// Layout:
+//   Left   → [● ● ●]  [CPU | RAM | Disk]
+//   Center →          [Clock]
+//   Right  →    [Media]  [Vol | BT | Net]  [Bat]  [Tray]
+
+{
+    "layer": "top",
+    "position": "top",
+    "height": 10,
+    "margin-top": 14,
+    "margin-left": 20,
+    "margin-right": 20,
+    "spacing": 20,
+    "reload_style_on_change": true,
+
+    // ── Module Layout ───────────────────────────────────────────
+    "modules-left": [
+        "ext/workspaces",
+        "group/system"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "mpris",
+        "group/connectivity",
+        "battery",
+        "tray"
+    ],
+
+    // ━━ Groups ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "disk"
+        ]
+    },
+
+    "group/connectivity": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "bluetooth",
+            "network"
+        ]
+    },
+
+    // ━━ Workspaces (ext-workspace protocol) ━━━━━━━━━━━━━━━━━━━━
+    // Renders as dot indicators — all visual styling done in CSS.
+    // Requires waybar >= 0.14.0 for ext/workspaces support.
+
+    "ext/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        },
+        "on-click": "activate",
+        "sort-by-number": true,
+        "all-outputs": false
+    },
+
+    // ━━ Clock ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "clock": {
+        "format": "<span size='16pt'></span>  {:%I:%M %p}",
+        "format-alt": "<span size='16pt'></span>  {:%A, %B %d %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "format": {
+                "months":    "<span color='#fabd2f'><b>{}</b></span>",
+                "days":      "<span color='#ebdbb2'>{}</span>",
+                "weeks":     "<span color='#83a598'><b>W{}</b></span>",
+                "weekdays":  "<span color='#fe8019'><b>{}</b></span>",
+                "today":     "<span color='#fb4934'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    // ━━ System Monitors ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "cpu": {
+        "format": "<span size='16pt'>󰍛</span>  {usage}%",
+        "interval": 2,
+        "tooltip": true,
+        "tooltip-format": "CPU: {usage}%\nFrequency: {avg_frequency} GHz"
+    },
+
+    "memory": {
+        "format": "<span size='16pt'>󰘚</span>  {percentage}%",
+        "interval": 2,
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
+    },
+
+    "disk": {
+        "format": "<span size='16pt'>󰋊</span>  {percentage_used}%",
+        "path": "/",
+        "interval": 30,
+        "tooltip-format": "Disk: {used} / {total}\nPath: {path}"
+    },
+
+    // ━━ Battery ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "battery": {
+        "interval": 10,
+        "format": "{icon}  {capacity}%",
+        "format-charging": "<span size='16pt'>󰂄</span>  {capacity}%",
+        "format-plugged": "<span size='16pt'></span>  {capacity}%",
+        "format-icons": [
+            "󰁺", "󰁻", "󰁼", "󰁽", "󰁾",
+            "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+        ],
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip-format": "{timeTo}\nPower draw: {power:.1f}W"
+    },
+
+    // ━━ Network ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "network": {
+        "format-wifi": "<span size='16pt'></span>  {signalStrength}%",
+        "format-ethernet": "<span size='16pt'>󰈀</span>  {ipaddr}/{cidr}",
+        "format-linked": "<span size='16pt'>󰈀</span>  No IP",
+        "format-disconnected": "<span size='16pt'>󰤭</span>  Off",
+        "interval": 5,
+        "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\nUp: {bandwidthUpBytes}  Down: {bandwidthDownBytes}",
+        "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}/{cidr}\nUp: {bandwidthUpBytes}  Down: {bandwidthDownBytes}",
+        "on-click": "nm-connection-editor"
+    },
+
+    // ━━ Audio (PipeWire) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "  {volume}%",
+        "format-muted": "<span size='16pt'>󰝟</span>  Muted",
+        "format-icons": {
+            "headphone": "",
+            "headset": "󰋎",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "tooltip-format": "{desc}\nVolume: {volume}%"
+    },
+
+    // ━━ Bluetooth ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "bluetooth": {
+        "format": "<span size='16pt'>󰂯</span>",
+        "format-connected": "<span size='16pt'>󰂱</span>  {device_alias}",
+        "format-connected-battery": "<span size='16pt'>󰂱</span>  {device_alias}  {device_battery_percentage}%",
+        "format-disabled": "<span size='16pt'>󰂲</span>",
+        "format-off": "<span size='16pt'>󰂲</span>",
+        "tooltip-format": "{controller_alias}\nStatus: {status}",
+        "tooltip-format-connected": "{controller_alias}\nConnected: {num_connections}\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "  {device_alias}",
+        "on-click": "blueman-manager"
+    },
+
+    // ━━ Media Player (MPRIS) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "mpris": {
+        "format": "{player_icon}  {dynamic}",
+        "format-paused": "{status_icon}  <i>{dynamic}</i>",
+        "dynamic-order": ["title", "artist"],
+        "dynamic-separator": " — ",
+        "player-icons": {
+            "default": "▶",
+            "spotify": "",
+            "firefox": "󰈹",
+            "chromium": ""
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        "max-length": 35,
+        "tooltip-format": "{player}: {title}\nby {artist}\non {album}"
+    },
+
+    // ━━ System Tray ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 8,
+        "show-passive-items": true
+    }
+}
+
+"cpu": {
+    "interval": 5  // change from 1s to 5s or 10s
+},
+"memory": {
+    "interval": 10 // change from 1s to 10s or 30s
+},
+"battery": {
+    "interval": 30 // battery does not need 1s polling
+},
+"network": {
+    "interval": 5
+}

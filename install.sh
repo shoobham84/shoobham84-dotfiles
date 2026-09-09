@@ -32,6 +32,13 @@ install_packages() {
         sudo apt install -y \
             zsh git tmux neovim fzf fd-find bat zoxide ripgrep \
             btop curl wget htop build-essential unzip
+    elif command -v emerge &>/dev/null; then
+        info "Gentoo detected. Installing packages..."
+        sudo emerge --ask=n --noreplace \
+            app-shells/zsh dev-vcs/git app-misc/tmux app-editors/neovim \
+            app-shells/fzf sys-apps/fd sys-apps/bat app-shells/zoxide \
+            sys-apps/ripgrep sys-process/btop net-misc/curl net-misc/wget \
+            sys-process/htop app-arch/unzip
     else
         warn "Unknown package manager. Skipping package installation."
         warn "Please manually install: zsh git tmux neovim fzf fd bat zoxide ripgrep btop"
@@ -95,7 +102,7 @@ install_tpm() {
 install_nvm() {
     if [ ! -d "$HOME/.nvm" ]; then
         info "Installing NVM..."
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
     else
         info "NVM already installed."
     fi
@@ -105,18 +112,18 @@ install_nvm() {
 create_symlinks() {
     info "Creating symlinks..."
 
-    mkdir -p ~/.config/fd
-    mkdir -p ~/.config/bat
 
     local links=(
-        "$DOTFILES_DIR/zsh/zshrc:$HOME/.zshrc"
-        "$DOTFILES_DIR/zsh/p10k.zsh:$HOME/.p10k.zsh"
-        "$DOTFILES_DIR/zsh/aliases.zsh:$HOME/.aliases.zsh"
-        "$DOTFILES_DIR/git/gitconfig:$HOME/.gitconfig"
-        "$DOTFILES_DIR/tmux/tmux.conf:$HOME/.tmux.conf"
+        "$DOTFILES_DIR/zsh/.zshenv:$HOME/.zshenv"
+        "$DOTFILES_DIR/zsh:$HOME/.config/zsh"
+        "$DOTFILES_DIR/git:$HOME/.config/git"
+        "$DOTFILES_DIR/gitignore:$HOME/.gitignore_global"
+        "$DOTFILES_DIR/tmux:$HOME/.config/tmux"
         "$DOTFILES_DIR/nvim:$HOME/.config/nvim"
-        "$DOTFILES_DIR/fd/ignore:$HOME/.config/fd/ignore"
-        "$DOTFILES_DIR/bat/config:$HOME/.config/bat/config"
+        "$DOTFILES_DIR/fd:$HOME/.config/fd"
+        "$DOTFILES_DIR/bat:$HOME/.config/bat"
+        "$DOTFILES_DIR/ghostty:$HOME/.config/ghostty"
+        "$DOTFILES_DIR/mango:$HOME/.config/mango"
     )
 
     for link in "${links[@]}"; do

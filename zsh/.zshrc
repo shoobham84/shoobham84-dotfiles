@@ -112,14 +112,14 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit $ZDOTDIR/p10k.zsh.
+[[ ! -f $ZDOTDIR/p10k.zsh ]] || source $ZDOTDIR/p10k.zsh
 
 # ── PATH ─────────────────────────────────────────
 export PATH="$HOME/.local/bin:$PATH"
 
 # ── Aliases ──────────────────────────────────────
-source ~/dotfiles/zsh/aliases.zsh
+source $ZDOTDIR/aliases.zsh
 
 # ── Plugins & Tools ──────────────────────────────
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -149,3 +149,15 @@ if grep -qi microsoft /proc/version 2>/dev/null; then
   eval "$(gnome-keyring-daemon --start 2>/dev/null)"
   export SSH_AUTH_SOCK
 fi
+
+TRAPWINCH() {
+  zle && zle .reset-prompt
+}
+
+if [ -n "$GHOSTTY_RESOURCES_DIR" ]; then
+  source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
+fi
+#
+# Prevent Oh My Zsh themes from printing right-hand side prompts
+RPROMPT=""
+RPS1=""
