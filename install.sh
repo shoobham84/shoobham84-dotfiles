@@ -124,6 +124,14 @@ create_symlinks() {
         "$DOTFILES_DIR/bat:$HOME/.config/bat"
         "$DOTFILES_DIR/ghostty:$HOME/.config/ghostty"
         "$DOTFILES_DIR/mango:$HOME/.config/mango"
+        "$DOTFILES_DIR/rofi:$HOME/.config/rofi"
+        "$DOTFILES_DIR/waybar:$HOME/.config/waybar"
+        "$DOTFILES_DIR/zathura:$HOME/.config/zathura"
+        "$DOTFILES_DIR/btop:$HOME/.config/btop"
+        "$DOTFILES_DIR/cava:$HOME/.config/cava"
+        "$DOTFILES_DIR/clangd:$HOME/.config/clangd"
+        "$DOTFILES_DIR/easyeffects:$HOME/.config/easyeffects"
+        "$DOTFILES_DIR/xdg-desktop-portal:$HOME/.config/xdg-desktop-portal"
     )
 
     for link in "${links[@]}"; do

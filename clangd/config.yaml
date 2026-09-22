@@ -1,0 +1,9 @@
+If:
+  PathMatch: .*\.c$
+CompileFlags:
+  Add: [-std=c2x]
+---
+If:
+  PathMatch: .*\.(cpp|cc|cxx|h|hpp|hxx)$
+CompileFlags:
+  Add: [-std=c++2c]

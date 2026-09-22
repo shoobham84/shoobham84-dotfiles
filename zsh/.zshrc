@@ -116,7 +116,7 @@ fi
 [[ ! -f $ZDOTDIR/p10k.zsh ]] || source $ZDOTDIR/p10k.zsh
 
 # ── PATH ─────────────────────────────────────────
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 # ── Aliases ──────────────────────────────────────
 source $ZDOTDIR/aliases.zsh
@@ -161,3 +161,4 @@ fi
 # Prevent Oh My Zsh themes from printing right-hand side prompts
 RPROMPT=""
 RPS1=""
+

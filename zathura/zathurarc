@@ -1,0 +1,62 @@
+# ==============================================================================
+# Zathura Gruvbox Dark Configuration (~/.config/zathura/zathurarc)
+# ==============================================================================
+
+# --- Dark Mode (Recolor) by Default ---
+# Press 'Ctrl + r' to toggle recolor mode on and off
+set recolor "true"
+set recolor-keephue "true"                  # Keep original image/figure colors
+set recolor-reverse-video "true"
+
+# --- Gruvbox Dark Color Palette ---
+set default-bg                  "#282828"
+set default-fg                  "#ebdbb2"
+
+set recolor-lightcolor          "#282828"   # Page background in dark mode
+set recolor-darkcolor           "#ebdbb2"   # Page text in dark mode
+
+# Statusbar & UI
+set statusbar-bg                "#3c3836"
+set statusbar-fg                "#ebdbb2"
+set inputbar-bg                 "#282828"
+set inputbar-fg                 "#ebdbb2"
+
+# Notifications (Errors, Warnings, Info)
+set notification-bg             "#3c3836"
+set notification-fg             "#ebdbb2"
+set notification-error-bg       "#cc241d"
+set notification-error-fg       "#ebdbb2"
+set notification-warning-bg     "#d79921"
+set notification-warning-fg     "#282828"
+
+set highlight-color             "rgba(250, 189, 47, 0.85)"  # Bright Gruvbox Yellow
+set highlight-active-color      "rgba(254, 128, 25, 0.90)"  # Bright Gruvbox Orange
+set highlight-fg                "#282828"                   # Crisp dark text for link numbers
+set completion-bg               "#3c3836"
+set completion-fg               "#ebdbb2"
+set completion-highlight-bg     "#504945"
+set completion-highlight-fg     "#ebdbb2"
+
+# --- General View & Behavior ---
+set selection-clipboard         "clipboard" # Copy directly to system clipboard
+set adjust-open                 "best-fit"  # Auto-fit to window
+set pages-per-row               1
+set page-padding                4
+set scroll-step                 40          # Smaller step size makes j/k scrolling feel fluid
+set scroll-page-aware           "true"      # Smoothly handle page boundary transitions
+set scroll-full-overlap         0.15        # Keep 15% overlap on page jumps so you don't lose context
+set statusbar-h-padding         10
+set statusbar-v-padding         6
+set search-hadjust              "true"
+set font                        "JetBrainsMono Nerd Font 15"
+
+# --- Useful Key Mappings ---
+map <C-d> scroll half-down                  # Vim half-page jump down
+map <C-u> scroll half-up                    # Vim half-page jump up
+map D toggle_page_mode                      # Toggle single-page / dual-page spread
+map i zoom in
+map u zoom out
+map = zoom 1.0
+map o feedkeys ":open /home/shubh/Brahmand/7\\ -\\ Reading\\ Material/"
+map O feedkeys ":open /home/shubh/Brahmand/7\\ -\\ Reading\\ Material/"
+map <C-g> exec "pdf-grep-rofi"

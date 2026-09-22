@@ -42,8 +42,8 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-background-opacity=0.6
-background-blur=false
+background-opacity=0.790569870
+background-blur=true
 theme = "Gruvbox Dark"
 font-size = 13
 confirm-close-surface = false
