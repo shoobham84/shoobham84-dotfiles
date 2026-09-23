@@ -57,6 +57,6 @@ map D toggle_page_mode                      # Toggle single-page / dual-page spr
 map i zoom in
 map u zoom out
 map = zoom 1.0
-map o feedkeys ":open /home/shubh/Brahmand/7\\ -\\ Reading\\ Material/"
-map O feedkeys ":open /home/shubh/Brahmand/7\\ -\\ Reading\\ Material/"
+map o feedkeys ":open /home/shubh/Brahmand/7-Reading-Material"
+map O feedkeys ":open /home/shubh/Brahmand/7-Reading-Material"
 map <C-g> exec "pdf-grep-rofi"
